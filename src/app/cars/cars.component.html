@@ -1,0 +1,3 @@
+<app-add-car (car)="updateCarList($event)"></app-add-car>
+<hr>
+<app-car *ngFor="let car of cars" [carItem]="car"></app-car>

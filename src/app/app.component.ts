@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-root',
@@ -23,15 +23,44 @@ export class AppComponent implements OnInit {
         },
     ];
 
-    defaultCountry = 'ua';
-    defaultAnswer = 'no';
+    form: FormGroup;
+    charsCount = 5;
 
     constructor() { }
 
-    ngOnInit() { }
-
-    formSubmit(form: NgForm) {
-        console.log(form);
+    ngOnInit() {
+        this.form = new FormGroup({
+            email: new FormControl('', [Validators.required, Validators.email], this.checkEmail),
+            pass: new FormControl('', [Validators.required, this.checkLength.bind(this)]),
+            country: new FormControl('ua'),
+            answer: new FormControl('no')
+        });
     }
 
+    onSubmit() {
+        console.log('work!', this.form);
+    }
+
+    checkLength(control: FormControl) {
+        if (control.value.length <= this.charsCount) {
+            return {
+                'errorLength': true,
+            };
+        }
+        return null;
+    }
+
+    checkEmail(control: FormControl): Promise<any> {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (control.value === 'i@i.ua') {
+                    resolve({
+                        'errEmail': true
+                    });
+                }else {
+                    resolve(null);
+                }
+            }, 3000);
+        });
+    }
 }

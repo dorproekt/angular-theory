@@ -1,43 +1,26 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-8 offset-md-2">
-            <h2 class="text-center">Форма авторизации</h2>
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <div class="form-group" [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}">
-                    <label>Email</label>
-                    <input type="text" class="form-control" formControlName="email">
-                    <div class="alert alert-danger" role="alert" *ngIf="form.get('email').invalid && form.get('email').touched">
-                      <p *ngIf="form.get('email').errors.email">Не коректный email</p>
-                      <p *ngIf="form.get('email').errors.errEmail">Такой email уже есть</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" formControlName="pass">
-                    <div class="alert alert-danger" role="alert" *ngIf="form.get('pass').invalid && form.get('pass').touched">
-                      <p *ngIf="form.get('pass').errors.required">Введите пароль</p>
-                      <p *ngIf="form.get('pass').errors.errorLength">Пароль должен быть больше                    {{ charsCount }} символов</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Выберете страну:</label>
-                    <select class="form-control is-valid" formControlName="country">
-                        <option value="ua">Украина</option>
-                        <option value="by">Беларусь</option>
-                        <option value="ru">Россия</option>
-                    </select>
-                </div>
-                <div class="radio" *ngFor="let ans of answers">
-                    <label>
-                        <input name="answer" type="radio" [value]="ans.type" formControlName="answer">{{ ans.text }}
-                    </label>
-                </div>
-                <button 
-                    class="btn btn-success" 
-                    type="submit"
-
-                >Сохранить</button>
-            </form>
+            <h2 class="text-center">Список авто</h2>
+            <input type="text" class="form-control" [(ngModel)]="carName" placeholder="Название авто">
+            <br>
+            <button class="btn btn-primary" (click)="loadCars()">Загрузить авто</button>
+            <button class="btn btn-success" (click)="addCar()">Добавить авто</button>
+            <hr>
+            <ul class="list-group">
+                <li 
+                   class="list-group-item d-flex justify-content-between align-items-center"
+                   *ngFor="let car of cars"
+                >
+                    {{ car.name }} - {{ car.color }}
+                    <button class="btn btn-info" (click)="setNewColor(car)">Изменить цвет</button>
+                    <button class="btn btn-danger" (click)="deleteCar(car)">Удалить авто</button>
+                    <span 
+                        class="badge badge-primary badge-pill"
+                        [ngStyle]="{'background-color': car.color}"
+                    >{{ car.id }}</span>
+                </li>
+            </ul>
         </div>
-    </div>
+    </div> 
 </div>

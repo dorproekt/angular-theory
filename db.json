@@ -1,0 +1,19 @@
+{
+  "cars": [
+    {
+      "name": "skoda",
+      "color": "blue",
+      "id": 7
+    },
+    {
+      "name": "lada",
+      "color": "green",
+      "id": 8
+    },
+    {
+      "name": "lexus",
+      "color": "black",
+      "id": 9
+    }
+  ]
+}

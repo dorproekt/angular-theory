@@ -1,26 +1,26 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-8 offset-md-2">
-            <h2 class="text-center">Список авто</h2>
-            <input type="text" class="form-control" [(ngModel)]="carName" placeholder="Название авто">
-            <br>
-            <button class="btn btn-primary" (click)="loadCars()">Загрузить авто</button>
-            <button class="btn btn-success" (click)="addCar()">Добавить авто</button>
-            <hr>
-            <ul class="list-group">
-                <li 
-                   class="list-group-item d-flex justify-content-between align-items-center"
-                   *ngFor="let car of cars"
-                >
-                    {{ car.name }} - {{ car.color }}
-                    <button class="btn btn-info" (click)="setNewColor(car)">Изменить цвет</button>
-                    <button class="btn btn-danger" (click)="deleteCar(car)">Удалить авто</button>
-                    <span 
-                        class="badge badge-primary badge-pill"
-                        [ngStyle]="{'background-color': car.color}"
-                    >{{ car.id }}</span>
+            <h1>Роутинг</h1>
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a 
+                        class="nav-link"
+                        routerLinkActive="active" 
+                        [routerLinkActiveOptions]="{exact: true}" 
+                        routerLink="/"
+                    >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a 
+                        class="nav-link" 
+                        routerLink="/cars"
+                        routerLinkActive="active"
+                    >Cars</a>
                 </li>
             </ul>
+            <hr>
+            <router-outlet></router-outlet>
         </div>
     </div> 
 </div>

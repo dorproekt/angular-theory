@@ -1,26 +1,23 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-8 offset-md-2">
-            <h1>Роутинг</h1>
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a 
-                        class="nav-link"
-                        routerLinkActive="active" 
-                        [routerLinkActiveOptions]="{exact: true}" 
-                        routerLink="/"
-                    >Home</a>
-                </li>
-                <li class="nav-item">
-                    <a 
-                        class="nav-link" 
-                        routerLink="/cars"
-                        routerLinkActive="active"
-                    >Cars</a>
-                </li>
-            </ul>
+            <div 
+                [@clickedDiv]="clickedDivState"
+                (click)="changeDivState()"
+                (mousedown)="clickedDivState='active'"
+            ></div>
+            <div
+                [@multi]="multiState"
+                (click)="multiState = multiState === 'start' ? 'end' : 'start'"
+            ><h4 class="text-center">Angular</h4></div>
+            <div 
+                class="btn btn-primary"
+                (click)="isVisible = !isVisible"
+            >Переключить</div>
             <hr>
-            <router-outlet></router-outlet>
+            <div *ngIf="isVisible" class="alert alert-warning" role="alert">
+                This is a light alert—check it out!
+            </div>
         </div>
-    </div> 
+    </div>
 </div>

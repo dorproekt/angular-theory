@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-8 offset-md-2">
-            <div 
+            <!--<div 
                 [@clickedDiv]="clickedDivState"
                 (click)="changeDivState()"
                 (mousedown)="clickedDivState='active'"
@@ -9,13 +9,18 @@
             <div
                 [@multi]="multiState"
                 (click)="multiState = multiState === 'start' ? 'end' : 'start'"
-            ><h4 class="text-center">Angular</h4></div>
+            ><h4 class="text-center">Angular</h4></div>-->
             <div 
                 class="btn btn-primary"
                 (click)="isVisible = !isVisible"
             >Переключить</div>
             <hr>
-            <div *ngIf="isVisible" class="alert alert-warning" role="alert">
+            <div 
+               *ngIf="isVisible" 
+               class="alert alert-warning" 
+               role="alert"
+               [@divTrigger]="'show'"
+            >
                 This is a light alert—check it out!
             </div>
         </div>
